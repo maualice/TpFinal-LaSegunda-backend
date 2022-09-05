@@ -4,7 +4,7 @@ const { BadRequestError, NotFoundError } = require('../errors');
 
 const getAllContacts = async (req, res) => {
   const contacts = await Contact.find().sort('createAt');
-  res.status(StatusCodes.OK).json({ contacts, count: contacts.length });
+  res.status(StatusCodes.OK).json( contacts );
 };
 
 const getContact = async (req, res) => {
