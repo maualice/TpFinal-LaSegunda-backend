@@ -19,6 +19,7 @@ const authRouter = require('./routes/auth');
 const productsRouter = require('./routes/products');
 const storesRouter = require('./routes/stores');
 const contactsRouter = require('./routes/contacts');
+const ordersRouter = require('./routes/orders');
 //error handler
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
@@ -45,6 +46,7 @@ app.use('/api/v1/products', productsRouter);
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/stores', storesRouter);
 app.use('/api/v1/contacts', contactsRouter);
+app.use('/api/v1/orders', ordersRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);

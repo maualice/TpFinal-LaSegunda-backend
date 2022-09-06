@@ -4,7 +4,7 @@ const { BadRequestError, NotFoundError } = require('../errors');
 
 const getAllProducts = async (req, res) => {
   const products = await Product.find().sort('createAt');
-  res.status(StatusCodes.OK).json({ products, count: products.length });
+  res.status(StatusCodes.OK).json( products );
 };
 
 const getProduct = async (req, res) => {
