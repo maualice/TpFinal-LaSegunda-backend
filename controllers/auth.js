@@ -1,6 +1,7 @@
 const User = require('../models/User')
 const { StatusCodes } = require('http-status-codes')
 const { BadRequestError, UnauthenticatedError } = require('../errors')
+const jwt = require('jsonwebtoken')
 
 const register = async (req, res) => {
   const user = await User.create({ ...req.body })
@@ -25,9 +26,24 @@ const login = async (req, res) => {
   // compare password
   const token = user.createJWT()
   res.status(StatusCodes.OK).json({ user: { name: user.name }, token })
+
+  const cookiesOptions = {
+    expire: new Date(Date.now()+process.env.TOKEN_EXPIRES * 24 * 60 * 60 * 1000),
+    httpOnly: true
+  }
+  res.cookie('jwt', token , cookiesOptions)
 }
+
+
+const logOut = async (req, res, next) => {
+  //Eliminar cookie jwt
+  res.clearCookie('jwt')
+  //Redirigir a la vista de login
+  return res.redirect('/login')
+};
 
 module.exports = {
   register,
   login,
+  logOut,
 }
