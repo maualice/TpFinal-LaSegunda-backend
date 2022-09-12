@@ -18,13 +18,9 @@ const ProductSchema = new mongoose.Schema(
       required: [true, 'Please provide product description'],
       maxlength: [1000, 'Description can not be more than 1000 characters'],
     },
-    brand: {
-      type: String,
-      required: [true, 'Please provide brand'],
-      enum: {
-        values: ['genius', 'logitech', 'kingston'],
-        message: '{VALUE} is not supported',
-      },
+    image: {
+      public_id: String,
+      secure_url: String,
     },
   },
   { timestamps: true }

@@ -7,10 +7,16 @@ const cors = require('cors');
 const xss = require('xss-clean');
 const rateLimiter = require('express-rate-limit');
 
-
-
 const express = require('express');
 const app = express();
+
+const fileUpload = require('express-fileupload');
+const cloudinary = require('cloudinary').v2;
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
+});
 //connect DB
 const connectDB = require('./db/connect');
 const authenticateUser = require('./middleware/authentication');
@@ -33,6 +39,12 @@ app.use(
 );
 
 app.use(express.json());
+app.use(
+  fileUpload({
+    useTempFiles: true, //lo guarda temporalmente en local
+    tempFileDir: './uploads',
+  })
+);
 app.use(helmet());
 app.use(cors());
 app.use(xss());
