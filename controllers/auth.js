@@ -9,6 +9,17 @@ const register = async (req, res) => {
   res.status(StatusCodes.CREATED).json({ user: { name: user.name }, token })
 }
 
+// checking for roles 
+/*const roles = async (req, res) => {
+if (roles) {
+  const foundRoles = await Role.find({ name: { $in: roles } });
+  newUser.roles = foundRoles.map((role) => role._id);
+} else {
+  const role = await Role.findOne({ name: "user" });
+  newUser.roles = [role._id];
+}
+}*/
+
 const login = async (req, res) => {
   const { email, password } = req.body
 

@@ -1,5 +1,7 @@
 require('dotenv').config();
 require('express-async-errors');
+//import { createRoles } from './libs/initialSetup';
+//const {createRoles} = require('./libs/initialSetup');
 
 // extra security packages
 const helmet = require('helmet');
@@ -35,6 +37,7 @@ const ordersRouter = require('./routes/orders');
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
 
+//createRoles();
 app.set('trust proxy', 1);
 app.use(
   rateLimiter({
