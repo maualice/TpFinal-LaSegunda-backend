@@ -1,9 +1,9 @@
-# Tp-Final-LaSegunda
+# TpFinal-LaSegunda-backend
 
-Trabajo final del curso FullStack brindado por La Segunda Seguros
+Vercel: https://tp-final-la-segunda-frontend.vercel.app/
 
-#### Setup
+Heroku: https://tpfinal-lasegunda.herokuapp.com/
 
-```bash
-npm install && npm start
+Alumnos: -  Alice, Mauro
+         -  Gómez, Francisco José 
 ```
