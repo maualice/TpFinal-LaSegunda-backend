@@ -1,0 +1,702 @@
+openapi: 3.0.0
+info:
+  title: Tp Final
+  contact: {}
+  version: '1.0'
+servers:
+  - url: https://tpfinal-lasegunda.herokuapp.com/api/v1
+    variables: {}
+paths:
+  /auth/register:
+    post:
+      tags:
+        - User
+      summary: Register User
+      operationId: RegisterUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/RegisterUserRequest'
+                - example:
+                    name: Admin
+                    email: admin@mail.com
+                    password: '1234567'
+                    admin: true
+            example:
+              name: Admin
+              email: admin@mail.com
+              password: '1234567'
+              admin: true
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/login:
+    post:
+      tags:
+        - User
+      summary: Login User
+      operationId: LoginUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/LoginUserRequest'
+                - example:
+                    email: fran@mail.com
+                    password: '1234567'
+            example:
+              email: fran@mail.com
+              password: '1234567'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /stores:
+    post:
+      tags:
+        - Store
+      summary: Create Store
+      operationId: CreateStore
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/CreateStoreRequest'
+                - example:
+                    name: Computers Store
+                    address: Mendoza 1430
+                    city: Rosario
+                    openingHours: 8:00 - 18:00
+            example:
+              name: Computers Store
+              address: Mendoza 1430
+              city: Rosario
+              openingHours: 8:00 - 18:00
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+        - Store
+      summary: GetAll Stores
+      operationId: GetAllStores
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /stores/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: the store id
+    get:
+      tags:
+        - Store
+      summary: Get Store
+      operationId: GetStore
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+
+    patch:
+      tags:
+        - Store
+      summary: Update Store
+      operationId: UpdateStore
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/UpdateStoreRequest'
+                - example:
+                    name: El zorro
+                    address: pancho villa
+                    city: Mexico
+                    openingHours: 24hs
+            example:
+              name: El zorro
+              address: pancho villa
+              city: Mexico
+              openingHours: 24hs
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+        - Store
+      summary: Delete Store
+      operationId: DeleteStore
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /contacts:
+    post:
+      tags:
+        - Contact
+      summary: Create Contact
+      operationId: CreateContact
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/CreateContactRequest'
+                - example:
+                    name: Agustín Lipari
+                    mail: agus@mail.com
+                    subject: Prodsffdsfsdfsdto
+                    comment: El ppesimo servio
+            example:
+              name: Agustín Lipari
+              mail: agus@mail.com
+              subject: Prodsffdsfsdfsdto
+              comment: El ppesimo servio
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+        - Contact
+      summary: GetAll Contacts
+      operationId: GetAllContacts
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /contacts/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: the contact id
+    get:
+      tags:
+        - Contact
+      summary: Get Contact
+      operationId: GetContact
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+
+    patch:
+      tags:
+        - Contact
+      summary: Update Contact
+      operationId: UpdateContact
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/UpdateContactRequest'
+                - example:
+                    name: Agustín Lipari
+                    mail: agus@mail.com
+                    subject: me equivoqué
+                    comment: lo siento
+            example:
+              name: Agustín Lipari
+              mail: agus@mail.com
+              subject: me equivoqué
+              comment: lo siento
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+
+    delete:
+      tags:
+        - Contact
+      summary: Delete Contact
+      operationId: DeleteContact
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /orders:
+    post:
+      tags:
+        - Order
+      summary: Create Order
+      operationId: CreateOrder
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/CreateOrderRequest'
+                - example:
+                    name: Guillermo Coria
+                    store:
+                      name: Electronic house
+                      address: San Juan 1200
+                      city: Rosario
+                      openingHours: 8:00 - 22:00
+                    pickup: true
+            example:
+              name: Guillermo Coria
+              store:
+                name: Electronic house
+                address: San Juan 1200
+                city: Rosario
+                openingHours: 8:00 - 22:00
+              pickup: true
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+        - Order
+      summary: GetAll Orders
+      operationId: GetAllOrders
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /orders/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: the order id
+    get:
+      tags:
+        - Order
+      summary: Get Order
+      operationId: GetOrder
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+
+    delete:
+      tags:
+        - Order
+      summary: Delete Order
+      operationId: DeleteOrder
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+
+    patch:
+      tags:
+        - Order
+      summary: Update Order
+      operationId: UpdateOrder
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/UpdateOrderRequest'
+                - example:
+                    name: Agustín Lipari
+                    store:
+                      name: Pauluci
+                      address: Belgrano 870
+                      city: San Nicolás
+                      openingHours: 9:00 - 21:00
+                    pickup: true
+            example:
+              name: Agustín Lipari
+              store:
+                name: Pauluci
+                address: Belgrano 870
+                city: San Nicolás
+                openingHours: 9:00 - 21:00
+              pickup: true
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /products:
+    post:
+      tags:
+        - Product
+      summary: Create Product
+      operationId: CreateProduct
+      parameters: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              required:
+                - name
+                - price
+                - description
+                - image
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Notebook Max L4 i1
+                price:
+                  type: integer
+                  format: int32
+                  example: 90090
+                description:
+                  type: string
+                  example: Notebook Banghó Max L4 i1, podrás llevar tus archivos y documentos a todos lados gracias a su peso ligero y tamaño reducido sin perder prestaciones, pantalla de 14 pulgadas HD para visualización completa y Windows 11. Además, tiene una capacidad RAM de 4GB.
+                image:
+                  type: string
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+        - Product
+      summary: GetAll Products
+      operationId: GetAllProducts
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /products/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: the product id
+    get:
+      tags:
+        - Product
+      summary: Get Product
+      operationId: GetProduct
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+
+    patch:
+      tags:
+        - Product
+      summary: Update Product
+      operationId: UpdateProduct
+      parameters: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              required:
+                - name
+                - price
+                - description
+                - image
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Notebook Max L4 i1
+                price:
+                  type: integer
+                  format: int32
+                  example: 90090
+                description:
+                  type: string
+                  example: Notebook Banghó Max L4 i1, podrás llevar tus archivos y documentos a todos lados gracias a su peso ligero y tamaño reducido sin perder prestaciones, pantalla de 14 pulgadas HD para visualización completa y Windows 11. Además, tiene una capacidad RAM de 4GB.
+                image:
+                  type: string
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+
+    delete:
+      tags:
+        - Product
+      summary: Delete Product
+      operationId: DeleteProduct
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    RegisterUserRequest:
+      title: RegisterUserRequest
+      required:
+        - name
+        - email
+        - password
+        - admin
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        admin:
+          type: boolean
+      example:
+        name: Admin
+        email: admin@mail.com
+        password: '1234567'
+        admin: true
+    LoginUserRequest:
+      title: LoginUserRequest
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: fran@mail.com
+        password: '1234567'
+    CreateStoreRequest:
+      title: CreateStoreRequest
+      required:
+        - name
+        - address
+        - city
+        - openingHours
+      type: object
+      properties:
+        name:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        openingHours:
+          type: string
+      example:
+        name: Computers Store
+        address: Mendoza 1430
+        city: Rosario
+        openingHours: 8:00 - 18:00
+    UpdateStoreRequest:
+      title: UpdateStoreRequest
+      required:
+        - name
+        - address
+        - city
+        - openingHours
+      type: object
+      properties:
+        name:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        openingHours:
+          type: string
+      example:
+        name: El zorro
+        address: pancho villa
+        city: Mexico
+        openingHours: 24hs
+    CreateContactRequest:
+      title: CreateContactRequest
+      required:
+        - name
+        - mail
+        - subject
+        - comment
+      type: object
+      properties:
+        name:
+          type: string
+        mail:
+          type: string
+        subject:
+          type: string
+        comment:
+          type: string
+      example:
+        name: Agustín Lipari
+        mail: agus@mail.com
+        subject: Prodsffdsfsdfsdto
+        comment: El ppesimo servio
+    UpdateContactRequest:
+      title: UpdateContactRequest
+      required:
+        - name
+        - mail
+        - subject
+        - comment
+      type: object
+      properties:
+        name:
+          type: string
+        mail:
+          type: string
+        subject:
+          type: string
+        comment:
+          type: string
+      example:
+        name: Agustín Lipari
+        mail: agus@mail.com
+        subject: me equivoqué
+        comment: lo siento
+    CreateOrderRequest:
+      title: CreateOrderRequest
+      required:
+        - name
+        - store
+        - pickup
+      type: object
+      properties:
+        name:
+          type: string
+        store:
+          allOf:
+            - $ref: '#/components/schemas/Store'
+            - {}
+        pickup:
+          type: boolean
+      example:
+        name: Guillermo Coria
+        store:
+          name: Electronic house
+          address: San Juan 1200
+          city: Rosario
+          openingHours: 8:00 - 22:00
+        pickup: true
+    Store:
+      title: Store
+      required:
+        - name
+        - address
+        - city
+        - openingHours
+      type: object
+      properties:
+        name:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        openingHours:
+          type: string
+      example:
+        name: Electronic house
+        address: San Juan 1200
+        city: Rosario
+        openingHours: 8:00 - 22:00
+    UpdateOrderRequest:
+      title: UpdateOrderRequest
+      required:
+        - name
+        - store
+        - pickup
+      type: object
+      properties:
+        name:
+          type: string
+        store:
+          allOf:
+            - $ref: '#/components/schemas/Store'
+            - {}
+        pickup:
+          type: boolean
+      example:
+        name: Agustín Lipari
+        store:
+          name: Pauluci
+          address: Belgrano 870
+          city: San Nicolás
+          openingHours: 9:00 - 21:00
+        pickup: true
+tags:
+  - name: User
+  - name: Store
+  - name: Contact
+  - name: Order
+  - name: Product
